@@ -1,8 +1,6 @@
 -- Aqua Air Cooling Database Schema
 -- Import this file in phpMyAdmin or MySQL to set up the database
-
-CREATE DATABASE IF NOT EXISTS `aqua_air_cooling` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `aqua_air_cooling`;
+-- (Database is already selected in phpMyAdmin)
 
 -- Users table (customer accounts)
 CREATE TABLE IF NOT EXISTS `users` (
