@@ -480,6 +480,15 @@ if (session_status() === PHP_SESSION_NONE) {
 /* ========================================================= */
 /* DYNAMIC MOBILE DRAWER MENU STYLING                       */
 /* ========================================================= */
+/* Freeze body scroll when drawer is open */
+body.aqua-drawer-locked,
+html.aqua-drawer-locked {
+    overflow: hidden !important;
+    height: 100% !important;
+    overscroll-behavior: none !important;
+    touch-action: none !important;
+}
+
 .aqua-drawer-backdrop {
     position: fixed;
     top: 0;
@@ -493,6 +502,7 @@ if (session_status() === PHP_SESSION_NONE) {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+    touch-action: none;
 }
 
 .aqua-drawer-backdrop.open {
@@ -517,6 +527,7 @@ if (session_status() === PHP_SESSION_NONE) {
     transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
     overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overscroll-behavior: contain;
 }
 
 .aqua-mobile-drawer.open {
@@ -532,6 +543,7 @@ if (session_status() === PHP_SESSION_NONE) {
     background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
     color: #ffffff;
     flex-shrink: 0;
+    touch-action: none;
 }
 
 .aqua-drawer-brand {
@@ -603,6 +615,7 @@ if (session_status() === PHP_SESSION_NONE) {
     background: #f8fafc;
     border-bottom: 1px solid #e2e8f0;
     flex-shrink: 0;
+    touch-action: none;
 }
 
 .drawer-user-info {
@@ -686,6 +699,9 @@ if (session_status() === PHP_SESSION_NONE) {
     overflow-y: auto;
     padding: 12px 14px;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
 }
 
 .drawer-section-title {
@@ -821,6 +837,7 @@ if (session_status() === PHP_SESSION_NONE) {
     flex-direction: column;
     gap: 10px;
     flex-shrink: 0;
+    touch-action: none;
 }
 
 .drawer-contact-buttons {
@@ -1835,7 +1852,9 @@ window.addEventListener("scroll", function () {
 
 });
 
-// Dynamic Mobile Drawer Open & Close Functions
+// Dynamic Mobile Drawer Open & Close Functions with Complete Body Scroll Freeze
+var aquaSavedScrollY = 0;
+
 function openAquaMobileMenu(e) {
     if (e) {
         try { e.preventDefault(); e.stopPropagation(); } catch(err) {}
@@ -1843,8 +1862,20 @@ function openAquaMobileMenu(e) {
     var drawer = document.getElementById('aquaMobileDrawer');
     var backdrop = document.getElementById('aquaDrawerBackdrop');
     if (drawer && backdrop) {
+        // Save current scroll position before freezing body
+        aquaSavedScrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        
         drawer.classList.add('open');
         backdrop.classList.add('open');
+        
+        // Lock body completely in place so underlying website CANNOT scroll
+        document.body.classList.add('aqua-drawer-locked');
+        document.documentElement.classList.add('aqua-drawer-locked');
+        document.body.style.position = 'fixed';
+        document.body.style.top = '-' + aquaSavedScrollY + 'px';
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
         document.body.style.overflow = 'hidden';
     }
     return false;
@@ -1856,9 +1887,29 @@ function closeAquaMobileMenu() {
     if (drawer && backdrop) {
         drawer.classList.remove('open');
         backdrop.classList.remove('open');
+        
+        // Unlock body and restore original scroll position
+        document.body.classList.remove('aqua-drawer-locked');
+        document.documentElement.classList.remove('aqua-drawer-locked');
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
         document.body.style.overflow = '';
+        window.scrollTo(0, aquaSavedScrollY);
     }
 }
+
+// Prevent background touch scrolling on backdrop
+document.addEventListener("DOMContentLoaded", function() {
+    var backdrop = document.getElementById('aquaDrawerBackdrop');
+    if (backdrop) {
+        backdrop.addEventListener('touchmove', function(ev) {
+            ev.preventDefault();
+        }, { passive: false });
+    }
+});
 
 // Close on ESC key
 document.addEventListener("keydown", function(e) {
