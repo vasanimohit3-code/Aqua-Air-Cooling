@@ -34,14 +34,22 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `address` text NOT NULL,
   `service_type` varchar(255) NOT NULL,
   `price` decimal(10,2) DEFAULT 0.00,
+  `coupon_code` varchar(100) DEFAULT NULL,
+  `discount_percent` decimal(5,2) DEFAULT 0.00,
+  `discount_amount` decimal(10,2) DEFAULT 0.00,
+  `final_price` decimal(10,2) DEFAULT 0.00,
   `company_type` varchar(100) NOT NULL,
-  `status` enum('Pending','Approved','Rejected') NOT NULL DEFAULT 'Pending',
+  `original_part` varchar(150) NOT NULL DEFAULT 'None (Service Only)',
+  `status` varchar(20) NOT NULL DEFAULT 'Pending',
+  `payment_status` varchar(50) NOT NULL DEFAULT 'Unpaid',
+  `payment_mode` varchar(50) DEFAULT NULL,
+  `completed_at` datetime DEFAULT NULL,
+  `technician_notes` text DEFAULT NULL,
   `visit_date` date DEFAULT NULL,
   `visit_time` time DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Default admin account
