@@ -1,13 +1,47 @@
 <?php
 // Database Configuration
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "aqua_air_cooling";
+// Set Asia/Kolkata Default Timezone for exact Indian Standard Time
+date_default_timezone_set('Asia/Kolkata');
 
-// Create Connection
-$conn = mysqli_connect($host, $username, $password, $database);
+$http_host = $_SERVER['HTTP_HOST'] ?? '';
+$is_live = (strpos($http_host, 'infinityfreeapp.com') !== false || strpos($http_host, 'free.nf') !== false || strpos($http_host, 'epizy.com') !== false);
+
+if ($is_live) {
+    // Live Server (InfinityFree) Credentials
+    $host = "sql303.infinityfree.com";
+    $username = "if0_42880850";
+    $password = "sEcbMMCRuC";
+    
+    // Auto-detect candidate database name
+    $possible_dbs = [
+        "if0_42880850_aquaaircoolling",
+        "if0_42880850_aquaaircooling",
+        "if0_42880850_aqua_air_cooling"
+    ];
+    
+    $conn = false;
+    foreach ($possible_dbs as $candidate) {
+        $test_conn = @mysqli_connect($host, $username, $password, $candidate);
+        if ($test_conn) {
+            $conn = $test_conn;
+            $database = $candidate;
+            break;
+        }
+    }
+    
+    if (!$conn) {
+        $database = "if0_42880850_aquaaircoolling";
+        $conn = mysqli_connect($host, $username, $password, $database);
+    }
+} else {
+    // Localhost XAMPP Configuration
+    $host = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "aqua_air_cooling";
+    $conn = mysqli_connect($host, $username, $password, $database);
+}
 
 // Check Connection
 if (!$conn) {
@@ -16,7 +50,4 @@ if (!$conn) {
 
 // Set UTF-8 Character Set
 mysqli_set_charset($conn, "utf8");
-
-// Set Asia/Kolkata Default Timezone for exact Indian Standard Time
-date_default_timezone_set('Asia/Kolkata');
 ?>
