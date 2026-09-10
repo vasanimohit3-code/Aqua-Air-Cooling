@@ -154,7 +154,7 @@ if(session_status()==PHP_SESSION_NONE)
                             <img class="img-fluid w-100 wow zoomIn" data-wow-delay="0.3s" src="img/m.jpg">
                         </div>
                         <div class="col-6 text-end">
-                            <img class="img-fluid w-50 wow zoomIn" data-wow-delay="0.5s" src="img/about-3.jpg">
+                            <img class="img-fluid w-50 wow zoomIn" data-wow-delay="0.5s" src="img/about-2.jpg">
                         </div>
                         <div class="col-6 text-start">
                             <img class="img-fluid w-75 wow zoomIn" data-wow-delay="0.7s" src="img/about-4.jpg">
