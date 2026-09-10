@@ -21,8 +21,12 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- Mobile Toggle -->
     <button type="button"
             class="navbar-toggler"
+            onclick="toggleMobileNavbar(event)"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse">
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
 
         <span class="navbar-toggler-icon"></span>
 
@@ -1182,36 +1186,35 @@ window.addEventListener("scroll", function () {
 
 });
 
-// Reliable Mobile Navbar Toggle
-document.addEventListener("DOMContentLoaded", function () {
-    const toggler = document.querySelector(".navbar-toggler");
-    const collapse = document.getElementById("navbarCollapse");
+// Reliable Mobile Navbar Toggle Function
+function toggleMobileNavbar(e) {
+    if (e) {
+        try { e.preventDefault(); e.stopPropagation(); } catch(err) {}
+    }
+    var collapse = document.getElementById("navbarCollapse");
+    if (!collapse) return false;
+    
+    if (collapse.classList.contains("show") || collapse.style.display === "block") {
+        collapse.classList.remove("show");
+        collapse.style.display = "none";
+    } else {
+        collapse.classList.add("show");
+        collapse.style.display = "block";
+    }
+    return false;
+}
 
-    if (toggler && collapse) {
-        toggler.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            collapse.classList.toggle("show");
-        });
-
-        // Close navbar when clicking any navigation link
-        const navLinks = collapse.querySelectorAll(".nav-link");
-        navLinks.forEach(function (link) {
-            link.addEventListener("click", function () {
-                if (window.innerWidth < 992) {
-                    collapse.classList.remove("show");
-                }
-            });
-        });
-
-        // Close navbar when tapping outside
-        document.addEventListener("click", function (e) {
-            if (window.innerWidth < 992 && collapse.classList.contains("show")) {
-                if (!collapse.contains(e.target) && !toggler.contains(e.target)) {
-                    collapse.classList.remove("show");
-                }
+// Close navbar when clicking outside or on a nav link on mobile
+document.addEventListener("click", function (e) {
+    if (window.innerWidth < 992) {
+        var collapse = document.getElementById("navbarCollapse");
+        var toggler = document.querySelector(".navbar-toggler");
+        if (collapse && (collapse.classList.contains("show") || collapse.style.display === "block")) {
+            if (!collapse.contains(e.target) && (!toggler || !toggler.contains(e.target))) {
+                collapse.classList.remove("show");
+                collapse.style.display = "none";
             }
-        });
+        }
     }
 });
 
