@@ -12,33 +12,12 @@ if ($is_live) {
     $host = "sql303.infinityfree.com";
     $username = "if0_42880850";
     $password = "sEcbMMCRuC";
-    
+    $database = "if0_42880850_aqua_air_coolling";
+
     @mysqli_report(MYSQLI_REPORT_OFF);
-
-    // Connect to MySQL server first
-    $conn = @mysqli_connect($host, $username, $password);
+    $conn = mysqli_connect($host, $username, $password, $database);
     if (!$conn) {
-        die("Database Server Connection Failed: " . mysqli_connect_error());
-    }
-
-    // Auto-discover the exact database created on this account
-    $database = "";
-    $db_res = @mysqli_query($conn, "SHOW DATABASES");
-    if ($db_res) {
-        while ($row = mysqli_fetch_row($db_res)) {
-            if ($row[0] !== 'information_schema' && strpos($row[0], 'if0_42880850') !== false) {
-                $database = $row[0];
-                break;
-            }
-        }
-    }
-
-    if (empty($database)) {
-        $database = "if0_42880850_aquaaircoolling";
-    }
-
-    if (!@mysqli_select_db($conn, $database)) {
-        die("Database Selection Failed for '$database': " . mysqli_error($conn));
+        die("Database Connection Failed: " . mysqli_connect_error());
     }
 } else {
     // Localhost XAMPP Configuration
