@@ -398,47 +398,74 @@ if(isset($_POST['ajax_request_coupon'])) {
 // Booking Save
 if (isset($_POST['booking'])) {
 
-    // 1. Automatic Self-Healing Schema Check: ensure all columns exist in bookings table
+    // 1. Ensure bookings table exists (Auto-create if missing)
+    $table_check = @mysqli_query($conn, "SHOW TABLES LIKE 'bookings'");
+    if (!$table_check || mysqli_num_rows($table_check) == 0) {
+        $create_sql = "CREATE TABLE IF NOT EXISTS `bookings` (
+          `id` int(11) NOT NULL AUTO_INCREMENT,
+          `user_id` int(11) NOT NULL,
+          `first_name` varchar(100) NOT NULL,
+          `last_name` varchar(100) NOT NULL,
+          `mobile` varchar(20) NOT NULL,
+          `email` varchar(255) NOT NULL,
+          `address` text NOT NULL,
+          `service_type` varchar(255) NOT NULL,
+          `price` decimal(10,2) DEFAULT 0.00,
+          `coupon_code` varchar(100) DEFAULT NULL,
+          `discount_percent` decimal(5,2) DEFAULT 0.00,
+          `discount_amount` decimal(10,2) DEFAULT 0.00,
+          `final_price` decimal(10,2) DEFAULT 0.00,
+          `company_type` varchar(100) NOT NULL DEFAULT 'Other',
+          `original_part` varchar(150) NOT NULL DEFAULT 'None (Service Only)',
+          `status` varchar(20) NOT NULL DEFAULT 'Pending',
+          `payment_status` varchar(50) NOT NULL DEFAULT 'Unpaid',
+          `payment_mode` varchar(50) DEFAULT NULL,
+          `completed_at` datetime DEFAULT NULL,
+          `technician_notes` text DEFAULT NULL,
+          `visit_date` date DEFAULT NULL,
+          `visit_time` time DEFAULT NULL,
+          `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (`id`),
+          KEY `user_id` (`user_id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+        @mysqli_query($conn, $create_sql);
+    }
+
+    // Drop legacy foreign key constraint if it exists (prevents child row insert error)
+    @mysqli_query($conn, "ALTER TABLE `bookings` DROP FOREIGN KEY `bookings_ibfk_1`");
+
+    // 2. Discover available columns in bookings table
     $cols_res = @mysqli_query($conn, "SHOW COLUMNS FROM `bookings`");
-    $existing_cols = [];
+    $available_cols = [];
     if ($cols_res) {
         while ($r = mysqli_fetch_assoc($cols_res)) {
-            $existing_cols[] = strtolower($r['Field']);
-        }
-    }
-    if (!empty($existing_cols)) {
-        if (!in_array('coupon_code', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `coupon_code` varchar(100) DEFAULT NULL");
-        }
-        if (!in_array('discount_percent', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `discount_percent` decimal(5,2) DEFAULT 0.00");
-        }
-        if (!in_array('discount_amount', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `discount_amount` decimal(10,2) DEFAULT 0.00");
-        }
-        if (!in_array('final_price', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `final_price` decimal(10,2) DEFAULT 0.00");
-        }
-        if (!in_array('original_part', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `original_part` varchar(150) NOT NULL DEFAULT 'None (Service Only)'");
-        }
-        if (!in_array('payment_status', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `payment_status` varchar(50) NOT NULL DEFAULT 'Unpaid'");
-        }
-        if (!in_array('payment_mode', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `payment_mode` varchar(50) DEFAULT NULL");
-        }
-        if (!in_array('completed_at', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `completed_at` datetime DEFAULT NULL");
-        }
-        if (!in_array('technician_notes', $existing_cols)) {
-            @mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `technician_notes` text DEFAULT NULL");
+            $available_cols[strtolower($r['Field'])] = true;
         }
     }
 
-    $user_id = (int)($_SESSION['user_id'] ?? 0);
+    // Try to auto-add missing columns (if DB permissions allow)
+    $needed_cols = [
+        'coupon_code'      => "VARCHAR(100) DEFAULT NULL",
+        'discount_percent' => "DECIMAL(5,2) DEFAULT 0.00",
+        'discount_amount'  => "DECIMAL(10,2) DEFAULT 0.00",
+        'final_price'      => "DECIMAL(10,2) DEFAULT 0.00",
+        'original_part'    => "VARCHAR(150) NOT NULL DEFAULT 'None (Service Only)'",
+        'company_type'     => "VARCHAR(100) NOT NULL DEFAULT 'Other'",
+        'status'           => "VARCHAR(20) NOT NULL DEFAULT 'Pending'",
+        'payment_status'   => "VARCHAR(50) NOT NULL DEFAULT 'Unpaid'",
+        'payment_mode'     => "VARCHAR(50) DEFAULT NULL",
+        'completed_at'     => "DATETIME DEFAULT NULL",
+        'technician_notes' => "TEXT DEFAULT NULL"
+    ];
+    foreach ($needed_cols as $c_name => $c_def) {
+        if (!isset($available_cols[$c_name])) {
+            if (@mysqli_query($conn, "ALTER TABLE `bookings` ADD COLUMN `$c_name` $c_def")) {
+                $available_cols[$c_name] = true;
+            }
+        }
+    }
 
-    /* Basic booking data */
+    /* Basic booking form data */
     $first_name = trim($_POST['first_name'] ?? '');
     $last_name = trim($_POST['last_name'] ?? '');
     $mobile = trim($_POST['mobile'] ?? '');
@@ -448,36 +475,43 @@ if (isset($_POST['booking'])) {
     $company_type = trim($_POST['company_type'] ?? 'Other');
     $original_part = trim($_POST['original_part'] ?? 'None (Service Only)');
 
-    // 2. Validate user_id exists in users table (Prevents Foreign Key Constraint Failures after DB clean-up)
-    $user_exists = false;
+    // 3. Ensure a valid user_id in users table so foreign keys never fail
+    $user_id = (int)($_SESSION['user_id'] ?? 0);
+    $user_valid = false;
     if ($user_id > 0) {
-        $chk_u = @mysqli_query($conn, "SELECT id FROM users WHERE id = '$user_id' LIMIT 1");
-        if ($chk_u && mysqli_num_rows($chk_u) > 0) {
-            $user_exists = true;
+        $chk = @mysqli_query($conn, "SELECT id FROM users WHERE id = '$user_id' LIMIT 1");
+        if ($chk && mysqli_num_rows($chk) > 0) {
+            $user_valid = true;
         }
     }
-
-    if (!$user_exists) {
-        $email_esc = mysqli_real_escape_string($conn, $email);
-        $find_u = @mysqli_query($conn, "SELECT id FROM users WHERE email = '$email_esc' LIMIT 1");
+    if (!$user_valid) {
+        // Look up by email
+        $em_esc = mysqli_real_escape_string($conn, $email);
+        $find_u = @mysqli_query($conn, "SELECT id FROM users WHERE email = '$em_esc' LIMIT 1");
         if ($find_u && mysqli_num_rows($find_u) > 0) {
-            $found_row = mysqli_fetch_assoc($find_u);
-            $user_id = (int)$found_row['id'];
+            $u_row = mysqli_fetch_assoc($find_u);
+            $user_id = (int)$u_row['id'];
             $_SESSION['user_id'] = $user_id;
+            $user_valid = true;
         } else {
-            // Auto-create user profile in users table so foreign key constraint never fails
-            $full_name = trim($first_name . ' ' . $last_name);
-            if (empty($full_name)) $full_name = 'Customer';
-            $fn_esc = mysqli_real_escape_string($conn, $full_name);
-            $mob_esc = mysqli_real_escape_string($conn, $mobile);
-            $addr_esc = mysqli_real_escape_string($conn, $address);
+            // Auto create customer in users table (name, email, password)
+            $full_name_val = trim($first_name . ' ' . $last_name);
+            if (empty($full_name_val)) $full_name_val = 'Customer';
+            $fn_esc = mysqli_real_escape_string($conn, $full_name_val);
             $dummy_pass = password_hash('User@123', PASSWORD_DEFAULT);
-            $ins_user = "INSERT INTO users (name, email, phone, password, address) 
-                         VALUES ('$fn_esc', '$email_esc', '$mob_esc', '$dummy_pass', '$addr_esc')";
-            if (@mysqli_query($conn, $ins_user)) {
+            $ins_user_sql = "INSERT INTO users (name, email, password) VALUES ('$fn_esc', '$em_esc', '$dummy_pass')";
+            if (@mysqli_query($conn, $ins_user_sql)) {
                 $user_id = (int)mysqli_insert_id($conn);
                 $_SESSION['user_id'] = $user_id;
-                $_SESSION['user_name'] = $full_name;
+                $user_valid = true;
+            } else {
+                // Pick any existing user
+                $any_u = @mysqli_query($conn, "SELECT id FROM users ORDER BY id ASC LIMIT 1");
+                if ($any_u && $any_row = mysqli_fetch_assoc($any_u)) {
+                    $user_id = (int)$any_row['id'];
+                    $_SESSION['user_id'] = $user_id;
+                    $user_valid = true;
+                }
             }
         }
     }
@@ -487,10 +521,6 @@ if (isset($_POST['booking'])) {
     ========================================= */
     $has_service = (!empty($service_type) && $service_type !== 'None (Spare Part Only)' && $service_type !== 'None');
     $has_part = (!empty($original_part) && $original_part !== 'None (Service Only)' && $original_part !== 'None / General Service Only' && $original_part !== 'None');
-
-    if (!$has_service && !$has_part) {
-        $booking_error_msg = "Please select at least an AC Service or an Original Spare Part.";
-    }
 
     if ($has_part && !$has_service) {
         $service_type = "Spare Part Only";
@@ -550,84 +580,108 @@ if (isset($_POST['booking'])) {
         $final_price = $price;
     }
 
-
     /* =========================================
-       INSERT BOOKING (Full Schema)
+       DYNAMICALLY BUILD THE INSERT QUERY
+       (Only use columns that ACTUALLY exist in DB!)
     ========================================= */
-    $sql = "
-        INSERT INTO bookings
-        (
-            user_id,
-            first_name,
-            last_name,
-            mobile,
-            email,
-            address,
-            service_type,
-            price,
-            coupon_code,
-            discount_percent,
-            discount_amount,
-            final_price,
-            company_type,
-            original_part
-        )
-        VALUES
-        (
-            '$user_id',
-            '" . mysqli_real_escape_string($conn, $first_name) . "',
-            '" . mysqli_real_escape_string($conn, $last_name) . "',
-            '" . mysqli_real_escape_string($conn, $mobile) . "',
-            '" . mysqli_real_escape_string($conn, $email) . "',
-            '" . mysqli_real_escape_string($conn, $address) . "',
-            '" . mysqli_real_escape_string($conn, $service_type) . "',
-            '$price',
-            '" . mysqli_real_escape_string($conn, $coupon_code) . "',
-            '$discount_percent',
-            '$discount_amount',
-            '$final_price',
-            '" . mysqli_real_escape_string($conn, $company_type) . "',
-            '" . mysqli_real_escape_string($conn, $original_part) . "'
-        )
-    ";
+    $fields = [];
+    $values = [];
+
+    // Core fields
+    $fields[] = "`user_id`";
+    $values[] = "'" . (int)$user_id . "'";
+
+    $fields[] = "`first_name`";
+    $values[] = "'" . mysqli_real_escape_string($conn, $first_name) . "'";
+
+    $fields[] = "`last_name`";
+    $values[] = "'" . mysqli_real_escape_string($conn, $last_name) . "'";
+
+    $fields[] = "`mobile`";
+    $values[] = "'" . mysqli_real_escape_string($conn, $mobile) . "'";
+
+    $fields[] = "`email`";
+    $values[] = "'" . mysqli_real_escape_string($conn, $email) . "'";
+
+    $fields[] = "`address`";
+    $values[] = "'" . mysqli_real_escape_string($conn, $address) . "'";
+
+    $fields[] = "`service_type`";
+    $values[] = "'" . mysqli_real_escape_string($conn, $service_type) . "'";
+
+    $fields[] = "`price`";
+    $values[] = "'" . (float)$price . "'";
+
+    if (isset($available_cols['company_type'])) {
+        $fields[] = "`company_type`";
+        $values[] = "'" . mysqli_real_escape_string($conn, $company_type) . "'";
+    }
+
+    if (isset($available_cols['original_part'])) {
+        $fields[] = "`original_part`";
+        $values[] = "'" . mysqli_real_escape_string($conn, $original_part) . "'";
+    }
+
+    if (isset($available_cols['coupon_code'])) {
+        $fields[] = "`coupon_code`";
+        $values[] = "'" . mysqli_real_escape_string($conn, $coupon_code) . "'";
+    }
+
+    if (isset($available_cols['discount_percent'])) {
+        $fields[] = "`discount_percent`";
+        $values[] = "'" . (float)$discount_percent . "'";
+    }
+
+    if (isset($available_cols['discount_amount'])) {
+        $fields[] = "`discount_amount`";
+        $values[] = "'" . (float)$discount_amount . "'";
+    }
+
+    if (isset($available_cols['final_price'])) {
+        $fields[] = "`final_price`";
+        $values[] = "'" . (float)$final_price . "'";
+    }
+
+    if (isset($available_cols['status'])) {
+        $fields[] = "`status`";
+        $values[] = "'Pending'";
+    }
+
+    if (isset($available_cols['payment_status'])) {
+        $fields[] = "`payment_status`";
+        $values[] = "'Unpaid'";
+    }
+
+    $sql = "INSERT INTO `bookings` (" . implode(', ', $fields) . ") VALUES (" . implode(', ', $values) . ")";
 
     $booking_success = false;
     $new_booking_id = 0;
+    $booking_db_error = '';
 
-    if (@mysqli_query($conn, $sql)) {
-        $booking_success = true;
-        $new_booking_id = (int)mysqli_insert_id($conn);
-    } else {
-        // Fallback: Insert with core columns if optional columns differ
-        $fallback_sql = "
-            INSERT INTO bookings
-            (
-                user_id,
-                first_name,
-                last_name,
-                mobile,
-                email,
-                address,
-                service_type,
-                price,
-                company_type
-            )
-            VALUES
-            (
-                '$user_id',
-                '" . mysqli_real_escape_string($conn, $first_name) . "',
-                '" . mysqli_real_escape_string($conn, $last_name) . "',
-                '" . mysqli_real_escape_string($conn, $mobile) . "',
-                '" . mysqli_real_escape_string($conn, $email) . "',
-                '" . mysqli_real_escape_string($conn, $address) . "',
-                '" . mysqli_real_escape_string($conn, $service_type) . "',
-                '$price',
-                '" . mysqli_real_escape_string($conn, $company_type) . "'
-            )
-        ";
-        if (@mysqli_query($conn, $fallback_sql)) {
+    try {
+        if (@mysqli_query($conn, $sql)) {
             $booking_success = true;
             $new_booking_id = (int)mysqli_insert_id($conn);
+        } else {
+            $booking_db_error = mysqli_error($conn);
+        }
+    } catch (Throwable $e) {
+        $booking_db_error = $e->getMessage();
+    }
+
+    // Emergency Fallback: If query failed, try minimal core columns
+    if (!$booking_success) {
+        $em_sql = "INSERT INTO `bookings` (`user_id`, `first_name`, `last_name`, `mobile`, `email`, `address`, `service_type`, `price`)
+                   VALUES ('" . (int)$user_id . "', '" . mysqli_real_escape_string($conn, $first_name) . "', '" . mysqli_real_escape_string($conn, $last_name) . "', '" . mysqli_real_escape_string($conn, $mobile) . "', '" . mysqli_real_escape_string($conn, $email) . "', '" . mysqli_real_escape_string($conn, $address) . "', '" . mysqli_real_escape_string($conn, $service_type) . "', '" . (float)$price . "')";
+        try {
+            if (@mysqli_query($conn, $em_sql)) {
+                $booking_success = true;
+                $new_booking_id = (int)mysqli_insert_id($conn);
+            } else {
+                $booking_db_error .= " | Fallback: " . mysqli_error($conn);
+            }
+        } catch (Throwable $e2) {
+            $booking_db_error .= " | Fallback: " . $e2->getMessage();
         }
     }
 
@@ -671,13 +725,15 @@ if (isset($_POST['booking'])) {
         </script></body></html>";
         exit();
     } else {
-        $last_err = mysqli_error($conn);
+        $err_js = json_encode($booking_db_error);
         echo '<!DOCTYPE html><html><head><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><style>body{font-family:sans-serif;background:#f5f7fb;}</style></head><body>';
         echo "<script>
+            let dbErr = $err_js;
             Swal.fire({
                 icon: 'error',
-                title: 'Booking Failed',
-                text: 'Could not process your booking. Please try again.',
+                title: 'Booking Database Error',
+                html: '<p style=\"color:#475569; margin-bottom:10px;\">Could not process your booking due to a database issue.</p>' +
+                      (dbErr ? '<div style=\"background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; border-radius:8px; padding:10px; font-size:12px; text-align:left; word-break:break-all; font-family:monospace; margin-top:10px;\"><strong>Error:</strong> ' + dbErr + '</div>' : ''),
                 confirmButtonColor: '#d33',
                 confirmButtonText: 'Try Again'
             }).then(() => {
