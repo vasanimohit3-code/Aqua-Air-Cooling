@@ -1,0 +1,487 @@
+/********** Template CSS **********/
+:root {
+    --primary: #FF800F;
+    --secondary: #00640a;
+    --light: #F6F7F8;
+    --dark: #0b983c;
+}
+
+/* Universal Mobile-Safe Containment */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 30px;
+    z-index: 99;
+}
+
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+/*** Button ***/
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn.btn-primary,
+.btn.btn-outline-primary:hover,
+.btn.btn-secondary,
+.btn.btn-outline-secondary:hover {
+    color: #FFFFFF;
+}
+
+.btn.btn-primary:hover {
+    background: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn.btn-secondary:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+}
+
+
+/*** Navbar ***/
+.navbar.sticky-top {
+    top: -100px;
+    transition: .5s;
+}
+
+.navbar .navbar-brand img {
+    max-height: 100x;
+}
+
+.navbar .navbar-nav .nav-link {
+    margin-left: 25px;
+    padding: 10px 0;
+    color: #696E77;
+    font-weight: 400;
+    outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+@media (max-width: 991.98px) {
+    .navbar .navbar-brand img {
+        max-height: 45px;
+    }
+
+    .navbar .navbar-nav {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    .navbar .nav-item .dropdown-menu {
+        padding-left: 30px;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        border: none;
+        margin-top: 0;
+        top: 150%;
+        right: 0; 
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s;
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        top: 100%;
+        visibility: visible;
+        transition: .5s;
+        opacity: 1;
+    }
+}
+
+
+/*** Header ***/
+.carousel-caption {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--dark);
+    border: 12px solid var(--dark);
+    border-radius: 3rem;
+}
+
+@media (max-width: 768px) {
+    #header-carousel .carousel-item {
+        position: relative;
+        min-height: 450px;
+    }
+    
+    #header-carousel .carousel-item img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+
+/*** Service ***/
+.service-item .service-icon {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-item .service-icon img {
+    max-width: 60px;
+    max-height: 60px;
+}
+
+
+/*** Footer ***/
+.footer {
+    color: #7F8499;
+}
+
+.footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #7F8499;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+}
+
+.footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #7F8499;
+    margin-right: 10px;
+}
+
+.footer .btn.btn-link:hover {
+    color: var(--primary);
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.footer .btn.btn-square {
+    color: #7F8499;
+    border: 1px solid #7F8499;
+}
+
+.footer .btn.btn-square:hover {
+    color: var(--light);
+    border-color: var(--primary);
+}
+
+.footer .copyright {
+    padding: 25px 0;
+    border-top: 1px solid rgba(256, 256, 256, .1);
+}
+
+.footer .copyright a {
+    color: var(--primary);
+}
+
+.footer .copyright a:hover {
+    color: #FFFFFF;
+}
+
+/* /// */
+/* ===== AC Service Booking Form CSS ===== */
+
+
+.contact{
+    background:#f5f7fa;
+}
+
+.contact-box{
+    background:#fff;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+    height:100%;
+}
+
+.contact-box h3{
+    color:#0d6efd;
+    font-weight:700;
+}
+
+.contact-box p{
+    font-size:17px;
+    color:#555;
+    line-height:1.8;
+}
+
+.contact-box i{
+    color:#0d6efd;
+    margin-right:8px;
+}
+
+.contact-box a{
+    text-decoration:none;
+    color:#0d6efd;
+}
+
+.contact-box a:hover{
+    color:#ff6600;
+}
+
+.form-control{
+    height:55px;
+    border-radius:8px;
+}
+
+textarea.form-control{
+    height:150px;
+    resize:none;
+}
+
+.btn-primary{
+    border-radius:8px;
+}
+
+.map iframe{
+    width:100%;
+    height:450px;
+    border:0;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+@media(max-width:991px){
+
+.contact-box{
+    margin-bottom:25px;
+}
+
+.map iframe{
+    height:300px;
+}
+
+}
+
+/* Login Button Fix */
+.login-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.login-btn i {
+    margin-right: 0 !important;
+}
+
+/* ========================================================
+   GLOBAL COMPREHENSIVE RESPONSIVE DESIGN (PHONE & LAPTOP)
+   ======================================================== */
+
+/* Fluid Typography */
+h1, .h1 { font-size: clamp(1.75rem, 3.5vw + 1rem, 2.75rem); word-break: break-word; }
+h2, .h2 { font-size: clamp(1.4rem, 2.5vw + 0.8rem, 2.2rem); word-break: break-word; }
+h3, .h3 { font-size: clamp(1.2rem, 1.8vw + 0.6rem, 1.75rem); word-break: break-word; }
+h4, .h4 { font-size: clamp(1.05rem, 1.2vw + 0.5rem, 1.4rem); }
+p { font-size: clamp(0.92rem, 0.4vw + 0.8rem, 1.05rem); }
+
+/* Table Touch Responsiveness */
+.table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+}
+.table-responsive::-webkit-scrollbar {
+    height: 6px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+.table-responsive table {
+    min-width: 600px;
+}
+
+/* Touch targets */
+button, .btn, .nav-link, a.btn {
+    min-height: 38px;
+    touch-action: manipulation;
+}
+
+/* Mobile & Tablet Optimizations (< 992px) */
+@media (max-width: 991.98px) {
+    /* Feature Section floating card on index.php */
+    .feature-floating-box {
+        margin-top: 15px !important;
+        position: relative !important;
+    }
+    .feature-floating-box .border-end {
+        border-right: none !important;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 18px;
+        margin-bottom: 18px;
+    }
+    .feature-floating-box .border-end:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .carousel-caption h1 {
+        font-size: clamp(1.4rem, 4.5vw, 2.4rem) !important;
+    }
+
+    .container-xxl, .container-fluid {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+/* Mobile Phones (< 768px) */
+@media (max-width: 767.98px) {
+    /* Form inputs prevent iOS zoom */
+    .form-control, .form-select, input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
+        font-size: 16px !important;
+    }
+
+    .display-4 {
+        font-size: 1.85rem !important;
+    }
+
+    .display-6 {
+        font-size: 1.55rem !important;
+    }
+
+    /* Carousel banner */
+    #header-carousel .carousel-item {
+        min-height: 280px !important;
+    }
+
+    /* Padding adjustments */
+    .py-5 {
+        padding-top: 2.2rem !important;
+        padding-bottom: 2.2rem !important;
+    }
+
+    .px-4 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Back to top button */
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Extra Small Phones (< 480px) */
+@media (max-width: 479.98px) {
+    body {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    /* Card padding compression */
+    .card-body, .booking-card, .contact-box {
+        padding: 18px 14px !important;
+    }
+}
+

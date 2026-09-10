@@ -1,0 +1,3031 @@
+/*=========================
+Premium Hero
+=========================*/
+
+.booking-hero{
+
+background:linear-gradient(135deg,#0d6efd,#003b8f);
+
+padding:90px 0;
+
+overflow:hidden;
+
+color:#fff;
+
+}
+
+.hero-badge{
+
+display:inline-block;
+
+background:#fff;
+
+color:#0d6efd;
+
+padding:10px 25px;
+
+border-radius:50px;
+
+font-weight:600;
+
+font-size:15px;
+
+}
+
+.hero-title{
+
+font-size:58px;
+
+font-weight:800;
+
+line-height:1.2;
+
+}
+
+.hero-title span{
+
+color:#FFD54F;
+
+}
+
+.hero-text{
+
+font-size:18px;
+
+line-height:30px;
+
+opacity:.95;
+
+}
+
+.hero-image{
+
+max-width:430px;
+
+animation:float 4s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@media(max-width:991px){
+
+.booking-hero{
+
+text-align:center;
+
+padding:60px 0;
+
+}
+
+.hero-title{
+
+font-size:38px;
+
+}
+
+.hero-image{
+
+margin-top:40px;
+
+max-width:280px;
+
+}
+
+}
+
+/* ===========================
+   Premium Booking Card
+=========================== */
+
+.booking-card{
+
+background:#ffffff;
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:0 15px 45px rgba(0,0,0,.12);
+
+transition:.35s;
+
+}
+
+.booking-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 20px 50px rgba(0,0,0,.18);
+
+}
+
+.booking-title{
+
+font-size:34px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+color:#222;
+
+}
+
+.booking-subtitle{
+
+color:#777;
+
+margin-bottom:30px;
+
+font-size:16px;
+
+}
+
+.booking-card .form-control,
+.booking-card .form-select{
+
+height:58px;
+
+border-radius:15px;
+
+border:2px solid #ececec;
+
+font-size:16px;
+
+transition:.3s;
+
+}
+
+.booking-card textarea.form-control{
+
+height:130px;
+
+}
+
+.booking-card .form-control:focus,
+.booking-card .form-select:focus{
+
+border-color:#0d6efd;
+
+box-shadow:0 0 15px rgba(13,110,253,.15);
+
+}
+
+.booking-card .btn{
+
+border-radius:15px;
+
+font-size:17px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.booking-card .btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* ===========================
+Why Choose Card
+=========================== */
+
+.info-card{
+
+background:#fff;
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:0 15px 45px rgba(0,0,0,.12);
+
+height:100%;
+
+}
+
+.info-card h3{
+
+font-weight:700;
+
+margin-bottom:25px;
+
+color:#0d6efd;
+
+}
+
+.info-card ul{
+
+list-style:none;
+
+padding:0;
+
+margin:0;
+
+}
+
+.info-card ul li{
+
+padding:12px 0;
+
+font-size:17px;
+
+border-bottom:1px solid #f1f1f1;
+
+}
+
+.info-card ul li:last-child{
+
+border:none;
+
+}
+
+.info-card i{
+
+color:#198754;
+
+margin-right:10px;
+
+}
+
+.info-card h5{
+
+margin-top:20px;
+
+font-weight:700;
+
+color:#222;
+
+}
+
+.info-card p{
+
+font-size:16px;
+
+margin-bottom:12px;
+
+}
+
+/*======================
+Price Card
+======================*/
+
+.price-card{
+
+background:linear-gradient(135deg,#0d6efd,#2b6cff);
+
+color:#fff;
+
+padding:25px;
+
+border-radius:20px;
+
+text-align:center;
+
+height:100%;
+
+box-shadow:0 12px 30px rgba(13,110,253,.25);
+
+}
+
+.price-card small{
+
+font-size:15px;
+
+opacity:.9;
+
+}
+
+.price-card h2{
+
+font-size:42px;
+
+font-weight:700;
+
+margin:15px 0;
+
+}
+
+.price-card p{
+
+font-size:14px;
+
+color:#f5f5f5 !important;
+
+}
+
+
+/* =====================================================
+   BOOKING PAGE - TWO COLUMN LAYOUT
+===================================================== */
+
+.booking-layout {
+
+    width: 100%;
+
+    max-width: 1400px;
+
+    margin: 30px auto;
+
+    padding: 0 25px;
+
+    display: grid;
+
+    grid-template-columns: minmax(600px, 1.25fr) minmax(350px, .75fr);
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   LEFT FORM
+===================================================== */
+
+.booking-form-area {
+
+    width: 100%;
+}
+
+
+/* =====================================================
+   RIGHT INFORMATION CARD
+===================================================== */
+
+.booking-info-area {
+
+    width: 100%;
+
+    position: sticky;
+
+    top: 100px;
+}
+
+
+.booking-info-card {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 15px 45px rgba(0, 80, 150, .12);
+
+    border: 1px solid rgba(0, 126, 232, .08);
+
+    transition: .3s ease;
+}
+
+
+.booking-info-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 80, 150, .17);
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.booking-info-image {
+
+    height: 220px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087ee8,
+            #05bfdc
+        );
+}
+
+
+.booking-info-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .6s ease;
+}
+
+
+.booking-info-card:hover
+.booking-info-image img {
+
+    transform: scale(1.06);
+}
+
+
+.image-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0) 35%,
+            rgba(0,50,100,.65) 100%
+        );
+}
+
+
+.image-badge {
+
+    position: absolute;
+
+    bottom: 18px;
+
+    left: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 15px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.95);
+
+    color: #087ee8;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.12);
+}
+
+
+.image-badge i {
+
+    color: #20b96c;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.booking-info-content {
+
+    padding: 25px;
+}
+
+
+.booking-small-title {
+
+    display: inline-block;
+
+    color: #087ee8;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 7px;
+}
+
+
+.booking-info-content h2 {
+
+    margin: 0;
+
+    color: #172536;
+
+    font-size: 25px;
+
+    line-height: 1.25;
+
+    font-weight: 800;
+}
+
+
+.booking-info-content h2 span {
+
+    display: block;
+
+    color: #087ee8;
+}
+
+
+.booking-description {
+
+    margin: 12px 0 20px;
+
+    color: #718096;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   BENEFITS
+===================================================== */
+
+.service-benefits {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.benefit-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 11px 9px;
+
+    border-radius: 12px;
+
+    background: #f6fbff;
+
+    border: 1px solid #e7f4fc;
+
+    transition: .25s ease;
+}
+
+
+.benefit-item:hover {
+
+    background: #edf8ff;
+
+    border-color: #ccecff;
+
+    transform: translateY(-2px);
+}
+
+
+.benefit-icon {
+
+    flex-shrink: 0;
+
+    width: 36px;
+
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    color: #087ee8;
+
+    background: #e3f5ff;
+
+}
+
+
+.benefit-item strong {
+
+    display: block;
+
+    color: #263746;
+
+    font-size: 11px;
+
+    line-height: 1.2;
+}
+
+
+.benefit-item small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #8795a3;
+
+    font-size: 9px;
+
+    line-height: 1.3;
+}
+
+
+/* =====================================================
+   HELP / CONTACT
+===================================================== */
+
+.booking-help {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #064b82,
+            #087ee8
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(8,126,232,.20);
+}
+
+
+.help-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.15);
+
+    font-size: 17px;
+}
+
+
+.help-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+}
+
+
+.help-content span {
+
+    font-size: 10px;
+
+    opacity: .8;
+
+}
+
+
+.help-content strong {
+
+    margin-top: 2px;
+
+    font-size: 14px;
+
+}
+
+
+.help-content small {
+
+    margin-top: 2px;
+
+    font-size: 9px;
+
+    opacity: .75;
+}
+
+
+.help-call {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #087ee8 !important;
+
+    background: #ffffff;
+
+    text-decoration: none;
+
+    transition: .3s ease;
+}
+
+
+.help-call:hover {
+
+    transform: scale(1.08);
+
+    color: #087ee8 !important;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .booking-layout {
+
+        grid-template-columns:
+            minmax(550px, 1fr)
+            minmax(320px, .7fr);
+
+        gap: 20px;
+
+    }
+
+
+    .booking-info-content {
+
+        padding: 20px;
+
+    }
+
+
+    .booking-info-content h2 {
+
+        font-size: 22px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE / SMALL TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .booking-layout {
+
+        grid-template-columns: 1fr;
+
+        max-width: 750px;
+
+    }
+
+
+    .booking-info-area {
+
+        position: relative;
+
+        top: auto;
+
+    }
+
+
+    .booking-info-card {
+
+        max-width: 750px;
+
+        margin: auto;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .booking-layout {
+
+        padding: 0 15px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .booking-info-image {
+
+        height: 190px;
+
+    }
+
+
+    .booking-info-content {
+
+        padding: 20px;
+
+    }
+
+
+    .booking-info-content h2 {
+
+        font-size: 21px;
+
+    }
+
+
+    .service-benefits {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .benefit-item {
+
+        padding: 10px;
+
+    }
+
+}
+
+/* =====================================================
+   DYNAMIC PROMO SIDE CARD (ASCII Layout)
+===================================================== */
+.side-promo-card {
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 15px 45px rgba(13, 110, 253, 0.10), 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(13, 110, 253, 0.12);
+    overflow: hidden;
+    position: sticky;
+    top: 100px;
+    transition: all 0.35s ease;
+}
+
+.side-promo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 22px 55px rgba(13, 110, 253, 0.18);
+    border-color: rgba(13, 110, 253, 0.25);
+}
+
+/* Header */
+.promo-header {
+    background: linear-gradient(135deg, #0d6efd, #0044ab);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ffffff;
+}
+
+.brand-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.snowflake-icon {
+    font-size: 22px;
+    animation: spinSlow 12s linear infinite;
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.brand-name {
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.live-badge {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #20c997;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(32, 201, 151, 0.7);
+    animation: pulseDot 1.8s infinite;
+}
+
+@keyframes pulseDot {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(32, 201, 151, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(32, 201, 151, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(32, 201, 151, 0);
+    }
+}
+
+/* Body */
+.promo-body {
+    padding: 26px 24px;
+}
+
+.promo-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1e293b;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.promo-title .highlight-text {
+    display: block;
+    color: #0d6efd;
+    background: linear-gradient(135deg, #0d6efd, #00b4d8);
+     background-size: 300% 100%;
+    background-clip: text;
+    color: transparent;
+    animation: promoGradient 4s ease infinite;
+}
+
+
+.promo-desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+/* Dynamic Service Live Info Box */
+.dynamic-service-box {
+    background: linear-gradient(135deg, #eef5ff, #e3efff);
+    border: 1.5px solid #b6d4fe;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 22px;
+    animation: slideInDown 0.3s ease;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dynamic-badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0d6efd;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+}
+
+.dyn-service-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.dyn-service-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0d6efd;
+}
+
+.dyn-details-grid {
+    display: flex;
+    gap: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    border-top: 1px dashed #b6d4fe;
+    padding-top: 10px;
+    margin-top: 8px;
+}
+
+.dynamic-tip-box {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+/* 4 Core Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.feature-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 14px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: #ffffff;
+    border-color: #0d6efd;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.12);
+}
+
+.feature-icon {
+    font-size: 26px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.feature-info strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.25;
+}
+
+.feature-info small {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* Help Box */
+.help-box {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-radius: 18px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+}
+
+.help-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.help-head-icon {
+    font-size: 28px;
+}
+
+.help-title {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.help-phone {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.help-phone:hover {
+    color: #38bdf8;
+}
+
+.help-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.help-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.call-btn {
+    background: #0d6efd;
+    color: #ffffff !important;
+}
+
+.call-btn:hover {
+    background: #0b5ed7;
+    transform: scale(1.1);
+}
+
+.whatsapp-btn {
+    background: #25d366;
+    color: #ffffff !important;
+}
+
+.whatsapp-btn:hover {
+    background: #20ba5a;
+    transform: scale(1.1);
+}
+
+@media (max-width: 991px) {
+    .side-promo-card {
+        position: relative;
+        top: 0;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 575px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .help-box {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    .help-left {
+        flex-direction: column;
+    }
+}
+
+/* =====================================================
+   HYPER-DYNAMIC INTERACTIVE PROMO ELEMENTS
+===================================================== */
+.dynamic-glow-card {
+    position: relative;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(135deg, #0d6efd, #00b4d8, #7209b7, #0d6efd);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.rating-badge {
+    font-size: 12px;
+    color: #475569;
+}
+
+.live-ticker-bar {
+    background: #fff5f5;
+    border: 1px solid #ffe3e3;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #c92a2a;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.animate-bounce {
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Brand Box */
+.dynamic-brand-box {
+    background: #f0f7ff;
+    border: 1px solid #bae0ff;
+    border-radius: 14px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: fadeIn 0.3s ease;
+}
+
+.brand-icon-chip {
+    width: 32px;
+    height: 32px;
+    background: #0d6efd;
+    color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* Quantity Calculator */
+.quantity-calculator {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 10px 14px;
+}
+
+.qty-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #0d6efd;
+    background: #0d6efd;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+    background: #0044ab;
+    transform: scale(1.1);
+}
+
+.qty-val {
+    font-weight: 800;
+    font-size: 15px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.discount-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: #198754;
+    background: #d1e7dd;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* Coupon Box */
+.coupon-box {
+    background: #fffbeb;
+    border: 1.5px dashed #f59e0b;
+    border-radius: 16px;
+    padding: 12px 16px;
+}
+
+.coupon-icon {
+    font-size: 20px;
+}
+
+/* =====================================================
+   PROMO NAV TABS & FEATURES GRID (High Specificity Overrides)
+===================================================== */
+.promo-tabs-wrapper .promo-nav-tabs {
+    background: #f1f5f9 !important;
+    padding: 5px !important;
+    border-radius: 50px !important;
+    border: 1px solid #e2e8f0 !important;
+    display: flex !important;
+    gap: 4px !important;
+    margin-bottom: 0 !important;
+}
+
+.promo-tabs-wrapper .promo-nav-tabs .nav-item {
+    flex: 1 1 0 !important;
+    margin: 0 !important;
+}
+
+.promo-tabs-wrapper .promo-nav-tabs .nav-link {
+    background: transparent !important;
+    color: #475569 !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    padding: 9px 14px !important;
+    border-radius: 50px !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    text-align: center !important;
+}
+
+.promo-tabs-wrapper .promo-nav-tabs .nav-link:hover {
+    color: #0d6efd !important;
+    background: rgba(13, 110, 253, 0.08) !important;
+}
+
+.promo-tabs-wrapper .promo-nav-tabs .nav-link.active {
+    background: linear-gradient(135deg, #0d6efd, #0044ab) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.35) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Features Grid below Tabs */
+.features-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    margin-bottom: 15px !important;
+}
+
+.feature-item {
+    background: #ffffff !important;
+    border: 1.5px solid #e2e8f0 !important;
+    padding: 14px 12px !important;
+    border-radius: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s ease !important;
+}
+
+.feature-item:hover {
+    background: #ffffff !important;
+    border-color: #0d6efd !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 22px rgba(13, 110, 253, 0.16) !important;
+}
+
+.feature-icon {
+    width: 42px !important;
+    height: 42px !important;
+    background: linear-gradient(135deg, #eef5ff, #e3efff) !important;
+    border-radius: 12px !important;
+    font-size: 22px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.feature-info strong {
+    display: block !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    line-height: 1.25 !important;
+}
+
+.feature-info small {
+    display: block !important;
+    font-size: 11px !important;
+    color: #64748b !important;
+    margin-top: 2px !important;
+    line-height: 1.3 !important;
+}
+
+/* Dynamic Feature Card Interactivity */
+.dynamic-feature-card {
+    cursor: pointer !important;
+    position: relative !important;
+}
+
+.dynamic-feature-card:active {
+    transform: scale(0.97) !important;
+}
+
+.feature-detail-pop {
+    background: #eef6ff !important;
+    border: 1px solid #cce3ff !important;
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+    font-size: 12px !important;
+    color: #034078 !important;
+    margin-top: 10px !important;
+    animation: fadeIn 0.3s ease !important;
+}
+
+/* Dynamic Included List */
+.dynamic-inc-header {
+    background: #f8fafc !important;
+    padding: 6px 10px !important;
+    border-radius: 10px !important;
+}
+
+.whats-included-list .inc-item {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    padding: 10px 12px !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    margin-bottom: 8px !important;
+    transition: all 0.25s ease !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.whats-included-list .inc-item:hover {
+    background: #f0f7ff !important;
+    transform: translateX(4px) !important;
+    border-color: #b6d4fe !important;
+}
+
+/* Dynamic Review Slider */
+.dynamic-review-card {
+    background: linear-gradient(135deg, #ffffff, #f8fafc) !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    padding: 14px 16px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s ease !important;
+}
+
+.rev-nav-btn {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 50% !important;
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #475569 !important;
+    font-size: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.rev-nav-btn:hover {
+    background: #0d6efd !important;
+    color: #ffffff !important;
+    border-color: #0d6efd !important;
+}
+
+.help-brand-large {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    color: #0d6efd !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    display: block !important;
+    margin-top: 3px !important;
+}
+
+/* Dynamic input focus effect */
+
+.booking-card .form-control,
+.booking-card .form-select {
+    transition: all 0.3s ease !important;
+}
+
+.booking-card .form-control:hover,
+.booking-card .form-select:hover {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 6px 18px rgba(14, 165, 233, 0.12) !important;
+    transform: translateY(-2px);
+}
+
+.booking-card .form-control:focus,
+.booking-card .form-select:focus {
+    border-color: #0d6efd !important;
+    box-shadow:
+        0 0 0 4px rgba(13, 110, 253, 0.10),
+        0 8px 20px rgba(13, 110, 253, 0.15) !important;
+    transform: translateY(-3px);
+}
+
+/* =========================================================
+   DYNAMIC BOOKING FORM ENHANCEMENTS (MODERN & INTERACTIVE)
+   ========================================================= */
+
+/* Top Availability Badge */
+.booking-live-header {
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(14, 165, 233, 0.12));
+    border: 1px solid rgba(13, 110, 253, 0.15);
+    border-radius: 50px;
+    padding: 6px 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0369a1;
+    margin-bottom: 18px;
+}
+
+.radar-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #10b981;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+}
+
+.radar-dot::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #10b981;
+    border-radius: 50%;
+    animation: radarPulse 1.8s infinite ease-out;
+}
+
+@keyframes radarPulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(2.8); opacity: 0; }
+}
+
+/* 3-Step Interactive Process Bar */
+.booking-steps-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 12px 18px;
+    margin-bottom: 25px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.step-item.active {
+    color: #0d6efd;
+}
+
+.step-item.active .step-num {
+    background: linear-gradient(135deg, #0d6efd, #0284c7);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+    transform: scale(1.1);
+}
+
+.step-item.completed {
+    color: #10b981;
+}
+
+.step-item.completed .step-num {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.step-line {
+    flex-grow: 1;
+    height: 2px;
+    background: #e2e8f0;
+    margin: 0 10px;
+}
+
+/* Quick Brand Selector Chips */
+.quick-brand-picker {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+}
+
+.quick-brand-picker:hover {
+    background: #f0f7ff;
+    border-color: #38bdf8;
+}
+
+.brand-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.brand-chip-btn {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 4px 12px !important;
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #334155 !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+}
+
+.brand-chip-btn:hover {
+    background: #e0f2fe !important;
+    color: #0284c7 !important;
+    border-color: #38bdf8 !important;
+    transform: translateY(-2px);
+}
+
+.brand-chip-btn.active {
+    background: linear-gradient(135deg, #0d6efd, #0284c7) !important;
+    color: #ffffff !important;
+    border-color: #0d6efd !important;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.35) !important;
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Live Dynamic Service Summary Card inside Form */
+.live-service-summary-card {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1.5px solid #bae6fd;
+    border-radius: 16px;
+    padding: 16px;
+    display: none;
+    animation: fadeInSlideUp 0.35s ease-out forwards;
+}
+
+@keyframes fadeInSlideUp {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.service-summary-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid #bae6fd;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #0369a1;
+}
+
+/* Redesigned Floating Price Card */
+.price-card {
+    background: linear-gradient(135deg, #0284c7 0%, #0d6efd 50%, #1e40af 100%) !important;
+    color: #ffffff !important;
+    border-radius: 18px !important;
+    padding: 18px 20px !important;
+    box-shadow: 0 10px 30px rgba(13, 110, 253, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.price-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.price-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(13, 110, 253, 0.4) !important;
+}
+
+.price-card small {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    font-size: 11px;
+    opacity: 0.85;
+    display: block;
+}
+
+.price-card h2 {
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    margin: 4px 0 !important;
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Submit Action Button Glow */
+.btn-book-submit {
+    background: linear-gradient(135deg, #0d6efd 0%, #0284c7 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    border-radius: 14px !important;
+    padding: 14px 30px !important;
+    box-shadow: 0 8px 25px rgba(13, 110, 253, 0.35) !important;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-book-submit:hover {
+    background: linear-gradient(135deg, #0b5ed7 0%, #0369a1 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 30px rgba(13, 110, 253, 0.45) !important;
+    color: #ffffff !important;
+}
+
+.btn-dashboard-link {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    border-radius: 14px !important;
+    padding: 14px 25px !important;
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-dashboard-link:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 25px rgba(245, 158, 11, 0.4) !important;
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   MULTI-PRICE BOX SYSTEM (SERVICE + ORIGINAL PART + TOTAL)
+   ========================================================= */
+.price-box-card {
+    border-radius: 18px !important;
+    padding: 16px 18px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 1.5px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.price-box-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.10) !important;
+}
+
+.price-box-card small {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.6px !important;
+    color: #64748b !important;
+    display: block !important;
+    margin-bottom: 4px !important;
+}
+
+.price-box-card h3 {
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    margin: 4px 0 !important;
+    letter-spacing: -0.5px !important;
+}
+
+.price-box-card h2 {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    margin: 4px 0 !important;
+    letter-spacing: -0.5px !important;
+}
+
+.service-price-box {
+    border-color: #bae6fd !important;
+    background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%) !important;
+}
+
+.service-price-box h3 {
+    color: #0284c7 !important;
+}
+
+.part-price-box {
+    border-color: #fbcfe8 !important;
+    background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 100%) !important;
+}
+
+.part-price-box h3 {
+    color: #db2777 !important;
+}
+
+.total-price-box {
+    border-color: #0d6efd !important;
+    background: linear-gradient(135deg, #0d6efd 0%, #0369a1 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(13, 110, 253, 0.35) !important;
+}
+
+.total-price-box small {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.total-price-box h2 {
+    color: #ffffff !important;
+}
+
+.price-box-tag {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    display: inline-block !important;
+    margin-top: 4px !important;
+}
+
+/* =========================================================
+   NEW DYNAMIC AC SPARE PARTS SHOWCASE
+========================================================= */
+.parts-experience-box {
+    background: #ffffff;
+    border: 1.5px solid #e0f2fe;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.06);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+.parts-experience-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0d6efd, #0284c7, #06b6d4);
+}
+
+.parts-experience-box.brand-highlight {
+    border-color: #38bdf8;
+    box-shadow: 0 12px 35px rgba(14, 165, 233, 0.22);
+}
+
+.parts-header-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+.parts-box-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.parts-box-subtitle {
+    color: #64748b;
+    font-size: 12.5px;
+    display: block;
+}
+
+.parts-trust-pill {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 50px;
+}
+
+/* Mode Switcher */
+.parts-mode-switcher {
+    display: flex;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 5px;
+    border-radius: 14px;
+    margin-top: 18px;
+}
+
+.parts-mode-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #64748b;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.parts-mode-btn:hover {
+    color: #0f172a;
+}
+
+.parts-mode-btn.active {
+    background: #ffffff;
+    color: #0284c7;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.parts-count-pill {
+    background: #e0f2fe;
+    color: #0284c7;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 50px;
+    font-weight: 800;
+}
+
+.parts-mode-btn.active .parts-count-pill {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+/* Service only reassurance card */
+.service-only-reassurance {
+    background: #f8fafc;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 14px 18px;
+}
+
+/* Category Filters */
+.parts-category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.parts-cat-btn {
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.parts-cat-btn:hover, .parts-cat-btn.active {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+/* Search Box */
+.parts-search-wrap {
+    position: relative;
+    min-width: 220px;
+}
+
+.parts-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.parts-search-box {
+    padding-left: 32px !important;
+    padding-right: 28px !important;
+    border-radius: 50px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    font-size: 12.5px !important;
+}
+
+.parts-search-box:focus {
+    border-color: #0284c7 !important;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
+}
+
+.parts-search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Cards Grid */
+.parts-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 6px 4px 10px 2px;
+}
+
+.parts-cards-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.parts-cards-grid::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* Individual Part Card */
+.part-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.part-card:hover {
+    border-color: #38bdf8;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.12);
+    background: #f8fafc;
+}
+
+.part-card.active {
+    border-color: #0284c7;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.22);
+    transform: translateY(-2px);
+}
+
+.part-card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+.cat-icon-electronics { background: #e0f2fe; color: #0284c7; }
+.cat-icon-motors { background: #fef3c7; color: #d97706; }
+.cat-icon-cooling { background: #dcfce7; color: #15803d; }
+.cat-icon-fittings { background: #f3e8ff; color: #7e22ce; }
+
+.part-card-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.part-card-cat-tag {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.5px;
+}
+
+.part-card-badge-pill {
+    font-size: 9.5px;
+    font-weight: 700;
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 1px 6px;
+    border-radius: 50px;
+}
+
+.part-card-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.part-card-sub {
+    font-size: 11px;
+    color: #64748b;
+    line-height: 1.3;
+}
+
+.part-card-price {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 2px 10px;
+    border-radius: 50px;
+}
+
+.part-card.active .part-card-price {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.part-card-oem {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.part-card-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: transparent;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.part-card.active .part-card-check {
+    border-color: #0284c7;
+    background: #0284c7;
+    color: #ffffff;
+}
+
+/* Active Floating Bar */
+.part-active-bar {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.25);
+    animation: fadeIn 0.3s ease;
+}
+
+.part-active-bar-remove {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.part-active-bar-remove:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+@media(max-width: 768px) {
+    .parts-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .parts-search-wrap {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   DEDICATED AC SERVICES SELECTOR
+========================================================= */
+.services-dedicated-box {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px 20px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    position: relative;
+}
+
+.services-dedicated-box:hover {
+    border-color: #cbd5e1;
+}
+
+.services-header-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.services-status-pill {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 50px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.services-status-pill.has-service {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #0369a1;
+}
+
+.services-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 4px 2px;
+}
+
+.services-mini-grid::-webkit-scrollbar {
+    width: 6px;
+}
+.services-mini-grid::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.service-mini-chip {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 11px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.service-mini-chip:hover {
+    background: #f0f9ff;
+    border-color: #38bdf8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+}
+
+.service-mini-chip.active {
+    background: #f0f9ff;
+    border-color: #0284c7;
+    box-shadow: 0 3px 12px rgba(2, 132, 199, 0.22);
+}
+
+.service-mini-chip .chip-icon-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #e0f2fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #0284c7;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.service-mini-chip.active .chip-icon-box {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.service-mini-chip .chip-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.service-mini-chip .chip-name {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.service-mini-chip .chip-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+}
+
+.service-mini-chip .chip-time-tag {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 1px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.service-mini-chip .chip-warranty-tag {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #16a34a;
+    background: #dcfce7;
+    padding: 1px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.service-mini-chip .chip-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.service-mini-chip .chip-price {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #0284c7;
+    background: #ffffff;
+    padding: 2px 6px;
+    border-radius: 6px;
+    border: 1px solid #bae6fd;
+    white-space: nowrap;
+}
+
+.service-mini-chip.active .chip-price {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+}
+
+.service-mini-chip .chip-check-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: transparent;
+    transition: all 0.2s ease;
+}
+
+.service-mini-chip.active .chip-check-circle {
+    border-color: #0284c7;
+    background: #0284c7;
+    color: #ffffff;
+}
+
+/* =========================================================
+   COMPACT AC SPARE PARTS SELECTOR
+========================================================= */
+.parts-dedicated-box {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px 20px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    position: relative;
+}
+
+.parts-dedicated-box:hover {
+    border-color: #cbd5e1;
+}
+
+.parts-dedicated-box.brand-highlight {
+    border-color: #0284c7;
+    box-shadow: 0 6px 24px rgba(2, 132, 199, 0.22);
+    transform: translateY(-1px);
+}
+
+.parts-header-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.parts-status-pill {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 50px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.parts-status-pill.has-part {
+    background: #f0fdf4;
+    border-color: #86efac;
+    color: #15803d;
+}
+
+/* Rich Selected Part Card */
+.part-selected-rich-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border: 1.5px solid #86efac;
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    animation: fadeIn 0.3s ease;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);
+}
+
+.part-selected-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #dcfce7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.15);
+}
+
+/* Compact Drawer */
+.parts-compact-drawer {
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 12px;
+    animation: fadeIn 0.25s ease;
+}
+
+.parts-mini-cats {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.mini-cat-pill {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #64748b;
+    border-radius: 50px;
+    padding: 4px 11px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.mini-cat-pill .mini-cat-count {
+    background: #f1f5f9;
+    color: #64748b;
+    padding: 1px 6px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.mini-cat-pill.active, .mini-cat-pill:hover {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #ffffff;
+}
+
+.mini-cat-pill.active .mini-cat-count, .mini-cat-pill:hover .mini-cat-count {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.parts-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+    max-height: 185px;
+    overflow-y: auto;
+    padding: 4px 2px;
+}
+
+.parts-mini-grid::-webkit-scrollbar {
+    width: 6px;
+}
+.parts-mini-grid::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.part-mini-chip {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 11px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.part-mini-chip:hover {
+    background: #f0f9ff;
+    border-color: #38bdf8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+}
+
+.part-mini-chip.active {
+    background: #f0f9ff;
+    border-color: #0284c7;
+    box-shadow: 0 3px 12px rgba(2, 132, 199, 0.22);
+}
+
+.part-mini-chip .chip-icon-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #e0f2fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #0284c7;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.part-mini-chip.active .chip-icon-box {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.part-mini-chip .chip-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.part-mini-chip .chip-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.part-mini-chip .chip-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+}
+
+.part-mini-chip .chip-brand-tag {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #0369a1;
+    background: #e0f2fe;
+    padding: 1px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.part-mini-chip .chip-warranty-tag {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #15803d;
+    background: #dcfce7;
+    padding: 1px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.part-mini-chip .chip-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.part-mini-chip .chip-price {
+    font-size: 12px;
+    font-weight: 800;
+    color: #0284c7;
+    background: #ffffff;
+    padding: 2px 6px;
+    border-radius: 6px;
+    border: 1px solid #bae6fd;
+    white-space: nowrap;
+}
+
+.part-mini-chip.active .chip-price {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+}
+
+.part-mini-chip .chip-check-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: transparent;
+    transition: all 0.2s ease;
+}
+
+.part-mini-chip.active .chip-check-circle {
+    border-color: #0284c7;
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.part-mini-chip.service-only-chip {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.part-mini-chip.service-only-chip:hover {
+    background: #dcfce7;
+    border-color: #86efac;
+}
+
+.part-mini-chip.service-only-chip.active {
+    background: #dcfce7;
+    border-color: #16a34a;
+    box-shadow: 0 3px 12px rgba(22, 163, 74, 0.2);
+}
+
+.part-mini-chip.service-only-chip.active .chip-icon-box {
+    background: #16a34a;
+    color: #ffffff;
+}
+
+.part-mini-chip.service-only-chip.active .chip-price {
+    background: #16a34a;
+    color: #ffffff;
+    border-color: #16a34a;
+}
+
+.part-mini-chip.service-only-chip.active .chip-check-circle {
+    border-color: #16a34a;
+    background: #16a34a;
+    color: #ffffff;
+}
+
+/* =========================================================
+   PROMINENT SIDE COUPON CARD (Beside the Form)
+========================================================= */
+.side-coupon-prominent-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    border: 1.5px solid #86efac;
+    border-radius: 20px;
+    padding: 18px 20px;
+    box-shadow: 0 10px 30px rgba(22, 101, 52, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.side-coupon-prominent-card:hover {
+    box-shadow: 0 12px 35px rgba(22, 101, 52, 0.12);
+}
+
+.side-coupon-prominent-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #10b981, #06b6d4, #0d6efd);
+}
+
+.side-coupon-badge-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #dcfce7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.18);
+}
+
+/* =========================================================
+   BOOKING PAGE RESPONSIVENESS (MOBILE, TABLET & LAPTOP)
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+    .booking-hero {
+        padding: 45px 0 35px 0;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: clamp(26px, 5vw, 42px) !important;
+        line-height: 1.25;
+    }
+
+    .hero-image {
+        max-width: 260px;
+        margin: 25px auto 0 auto;
+    }
+
+    .side-promo-card, .side-coupon-prominent-card {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .booking-card {
+        padding: 20px 14px !important;
+        border-radius: 18px !important;
+    }
+
+    .booking-title {
+        font-size: 21px !important;
+    }
+
+    .booking-subtitle {
+        font-size: 13.5px !important;
+        margin-bottom: 18px !important;
+    }
+
+    /* 3-Step Process Bar */
+    .booking-steps-bar {
+        padding: 10px 8px !important;
+        gap: 4px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .step-num {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 12px !important;
+    }
+
+    .step-label {
+        font-size: 10.5px !important;
+    }
+
+    .step-line {
+        height: 2px !important;
+        min-width: 15px !important;
+        flex: 1 !important;
+    }
+
+    /* Service Chips Grid */
+    .services-mini-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    .service-mini-chip {
+        width: 100% !important;
+        padding: 10px 12px !important;
+        border-radius: 12px !important;
+        gap: 10px !important;
+    }
+
+    .chip-name {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+    }
+
+    .chip-meta {
+        gap: 4px !important;
+        flex-wrap: wrap !important;
+    }
+
+    .chip-time-tag, .chip-warranty-tag {
+        font-size: 10px !important;
+        padding: 2px 6px !important;
+    }
+
+    .chip-price {
+        font-size: 13px !important;
+        padding: 3px 8px !important;
+    }
+
+    /* Spare Parts Grid */
+    .parts-mini-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    .part-mini-chip {
+        width: 100% !important;
+        padding: 10px 12px !important;
+        border-radius: 12px !important;
+    }
+
+    .part-name {
+        font-size: 13px !important;
+    }
+
+    .part-selected-rich-card {
+        padding: 12px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+    }
+
+    .part-selected-rich-card .ms-auto {
+        margin-left: 0 !important;
+        width: 100% !important;
+        justify-content: space-between !important;
+    }
+
+    /* Form Fields */
+    .booking-card .form-control,
+    .booking-card .form-select {
+        height: 50px !important;
+        font-size: 16px !important;
+        border-radius: 11px !important;
+    }
+
+    .booking-card textarea.form-control {
+        height: 90px !important;
+    }
+
+    /* Buttons */
+    .btn-submit-booking {
+        font-size: 15px !important;
+        padding: 12px 16px !important;
+        border-radius: 12px !important;
+    }
+}
+
+@media (max-width: 479.98px) {
+    .hero-title {
+        font-size: 24px !important;
+    }
+
+    .booking-live-header {
+        font-size: 10.5px !important;
+    }
+
+    .side-coupon-prominent-card {
+        padding: 14px 12px !important;
+        border-radius: 16px !important;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+
+    /* Mobile Placement for Coupon before Service Charge */
+    #mobileCouponSlot .side-coupon-prominent-card {
+        margin-top: 0 !important;
+        margin-bottom: 5px !important;
+        background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+        border: 1.5px solid #86efac !important;
+        box-shadow: 0 4px 15px rgba(22, 101, 52, 0.07) !important;
+    }
+}
+
+
+
