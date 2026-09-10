@@ -230,6 +230,38 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <style>
 
+/* Mobile Responsive Navbar Menu Styling */
+@media (max-width: 991.98px) {
+    #navbarCollapse.collapse.show {
+        display: block !important;
+        background: #ffffff !important;
+        padding: 15px 20px !important;
+        border-radius: 12px !important;
+        margin-top: 10px !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+    #navbarCollapse .navbar-nav .nav-link {
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        color: #1e293b !important;
+        border-bottom: 1px solid #f1f5f9 !important;
+        display: block !important;
+        text-align: left !important;
+    }
+    #navbarCollapse .navbar-nav .nav-link:hover,
+    #navbarCollapse .navbar-nav .nav-link.active {
+        color: #0d6efd !important;
+        background: #f8fafc !important;
+        border-radius: 8px !important;
+    }
+    .navbar-toggler {
+        cursor: pointer;
+        z-index: 9999;
+    }
+}
+
 .login-message-overlay {
 
     display: none;
@@ -1148,6 +1180,39 @@ window.addEventListener("scroll", function () {
         navbar.classList.remove("scrolled");
     }
 
+});
+
+// Reliable Mobile Navbar Toggle
+document.addEventListener("DOMContentLoaded", function () {
+    const toggler = document.querySelector(".navbar-toggler");
+    const collapse = document.getElementById("navbarCollapse");
+
+    if (toggler && collapse) {
+        toggler.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            collapse.classList.toggle("show");
+        });
+
+        // Close navbar when clicking any navigation link
+        const navLinks = collapse.querySelectorAll(".nav-link");
+        navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (window.innerWidth < 992) {
+                    collapse.classList.remove("show");
+                }
+            });
+        });
+
+        // Close navbar when tapping outside
+        document.addEventListener("click", function (e) {
+            if (window.innerWidth < 992 && collapse.classList.contains("show")) {
+                if (!collapse.contains(e.target) && !toggler.contains(e.target)) {
+                    collapse.classList.remove("show");
+                }
+            }
+        });
+    }
 });
 
 </script>
