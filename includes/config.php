@@ -15,34 +15,30 @@ if ($is_live) {
     
     @mysqli_report(MYSQLI_REPORT_OFF);
 
-    // Auto-detect candidate database name
-    $possible_dbs = [
-        "if0_42880850_aquaaircoolling",
-        "if0_42880850_aquaaircooling",
-        "if0_42880850_aqua_air_cooling"
-    ];
-    
-    $conn = false;
-    foreach ($possible_dbs as $candidate) {
-        try {
-            $test_conn = @mysqli_connect($host, $username, $password, $candidate);
-            if ($test_conn) {
-                $conn = $test_conn;
-                $database = $candidate;
+    // Connect to MySQL server first
+    $conn = @mysqli_connect($host, $username, $password);
+    if (!$conn) {
+        die("Database Server Connection Failed: " . mysqli_connect_error());
+    }
+
+    // Auto-discover the exact database created on this account
+    $database = "";
+    $db_res = @mysqli_query($conn, "SHOW DATABASES");
+    if ($db_res) {
+        while ($row = mysqli_fetch_row($db_res)) {
+            if ($row[0] !== 'information_schema' && strpos($row[0], 'if0_42880850') !== false) {
+                $database = $row[0];
                 break;
             }
-        } catch (Throwable $e) {
-            // continue trying next candidate
         }
     }
-    
-    if (!$conn) {
-        try {
-            $database = "if0_42880850_aquaaircoolling";
-            $conn = @mysqli_connect($host, $username, $password, $database);
-        } catch (Throwable $e) {
-            $conn = false;
-        }
+
+    if (empty($database)) {
+        $database = "if0_42880850_aquaaircoolling";
+    }
+
+    if (!@mysqli_select_db($conn, $database)) {
+        die("Database Selection Failed for '$database': " . mysqli_error($conn));
     }
 } else {
     // Localhost XAMPP Configuration
@@ -51,11 +47,10 @@ if ($is_live) {
     $password = "";
     $database = "aqua_air_cooling";
     $conn = mysqli_connect($host, $username, $password, $database);
-}
-
-// Check Connection
-if (!$conn) {
-    die("Database Connection Failed: " . mysqli_connect_error());
+    
+    if (!$conn) {
+        die("Database Connection Failed: " . mysqli_connect_error());
+    }
 }
 
 // Set UTF-8 Character Set
