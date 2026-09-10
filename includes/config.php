@@ -13,6 +13,8 @@ if ($is_live) {
     $username = "if0_42880850";
     $password = "sEcbMMCRuC";
     
+    @mysqli_report(MYSQLI_REPORT_OFF);
+
     // Auto-detect candidate database name
     $possible_dbs = [
         "if0_42880850_aquaaircoolling",
@@ -22,17 +24,25 @@ if ($is_live) {
     
     $conn = false;
     foreach ($possible_dbs as $candidate) {
-        $test_conn = @mysqli_connect($host, $username, $password, $candidate);
-        if ($test_conn) {
-            $conn = $test_conn;
-            $database = $candidate;
-            break;
+        try {
+            $test_conn = @mysqli_connect($host, $username, $password, $candidate);
+            if ($test_conn) {
+                $conn = $test_conn;
+                $database = $candidate;
+                break;
+            }
+        } catch (Throwable $e) {
+            // continue trying next candidate
         }
     }
     
     if (!$conn) {
-        $database = "if0_42880850_aquaaircoolling";
-        $conn = mysqli_connect($host, $username, $password, $database);
+        try {
+            $database = "if0_42880850_aquaaircoolling";
+            $conn = @mysqli_connect($host, $username, $password, $database);
+        } catch (Throwable $e) {
+            $conn = false;
+        }
     }
 } else {
     // Localhost XAMPP Configuration
