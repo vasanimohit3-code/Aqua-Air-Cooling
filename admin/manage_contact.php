@@ -27,11 +27,21 @@ if (!$table_check || mysqli_num_rows($table_check) == 0) {
     mysqli_query($conn, $create_sql);
 }
 
+// Ensure columns exist
+$col_check1 = mysqli_query($conn, "SHOW COLUMNS FROM contact_info LIKE 'about_heading'");
+if ($col_check1 && mysqli_num_rows($col_check1) == 0) {
+    @mysqli_query($conn, "ALTER TABLE contact_info ADD COLUMN about_heading VARCHAR(255) DEFAULT 'Welcome To AC Installation & Cooling Service Center ⭐'");
+}
+$col_check2 = mysqli_query($conn, "SHOW COLUMNS FROM contact_info LIKE 'about_desc'");
+if ($col_check2 && mysqli_num_rows($col_check2) == 0) {
+    @mysqli_query($conn, "ALTER TABLE contact_info ADD COLUMN about_desc TEXT NULL");
+}
+
 $count_check = mysqli_query($conn, "SELECT COUNT(*) as cnt FROM contact_info");
 $count_row = ($count_check && mysqli_num_rows($count_check) > 0) ? mysqli_fetch_assoc($count_check) : ['cnt' => 0];
 if (empty($count_row['cnt'])) {
-    $seed_sql = "INSERT INTO `contact_info` (`id`, `page_heading`, `page_subheading`, `address`, `phone`, `email`, `working_hours`, `services_text`, `whatsapp_number`) VALUES
-    (1, 'Contact Us', 'We are available for AC Installation, Repair & Maintenance Services.', '123 Main Street,\nRajkot, Gujarat', '+91 6354911971', 'aquaaircoolling@gmail.com', 'Monday - Saturday\n8:00 AM - 8:00 PM', 'AC Installation, Repair, Maintenance, Gas Filling & General AC Service.', '916354911971')
+    $seed_sql = "INSERT INTO `contact_info` (`id`, `page_heading`, `page_subheading`, `address`, `phone`, `email`, `working_hours`, `services_text`, `whatsapp_number`, `about_heading`, `about_desc`) VALUES
+    (1, 'Contact Us', 'We are available for AC Installation, Repair & Maintenance Services.', '123 Main Street,\nRajkot, Gujarat', '+91 6354911971', 'aquaaircoolling@gmail.com', 'Monday - Saturday\n8:00 AM - 8:00 PM', 'AC Installation, Repair, Maintenance, Gas Filling & General AC Service.', '916354911971', 'Welcome To AC Installation & Cooling Service Center ⭐', 'We provide professional AC servicing, cleaning, maintenance, and repairs to keep your cooling system efficient and dependable. Our expert technicians ensure optimal performance, improved air quality, and reduced energy costs, helping you stay comfortable in every season.')
     ON DUPLICATE KEY UPDATE `phone` = VALUES(`phone`);";
     mysqli_query($conn, $seed_sql);
 }
@@ -46,6 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $working_hours = mysqli_real_escape_string($conn, trim($_POST['working_hours'] ?? ''));
     $services_text = mysqli_real_escape_string($conn, trim($_POST['services_text'] ?? ''));
     $whatsapp_number = mysqli_real_escape_string($conn, trim($_POST['whatsapp_number'] ?? ''));
+    $about_heading = mysqli_real_escape_string($conn, trim($_POST['about_heading'] ?? 'Welcome To AC Installation & Cooling Service Center ⭐'));
+    $about_desc = mysqli_real_escape_string($conn, trim($_POST['about_desc'] ?? ''));
 
     // Clean whatsapp number (digits only)
     $clean_whatsapp = preg_replace('/[^0-9]/', '', $whatsapp_number);
@@ -54,9 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $update_sql = "INSERT INTO contact_info 
-        (id, page_heading, page_subheading, address, phone, email, working_hours, services_text, whatsapp_number) 
+        (id, page_heading, page_subheading, address, phone, email, working_hours, services_text, whatsapp_number, about_heading, about_desc) 
         VALUES 
-        (1, '$page_heading', '$page_subheading', '$address', '$phone', '$email', '$working_hours', '$services_text', '$clean_whatsapp')
+        (1, '$page_heading', '$page_subheading', '$address', '$phone', '$email', '$working_hours', '$services_text', '$clean_whatsapp', '$about_heading', '$about_desc')
         ON DUPLICATE KEY UPDATE 
         page_heading = VALUES(page_heading),
         page_subheading = VALUES(page_subheading),
@@ -65,10 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         email = VALUES(email),
         working_hours = VALUES(working_hours),
         services_text = VALUES(services_text),
-        whatsapp_number = VALUES(whatsapp_number)";
+        whatsapp_number = VALUES(whatsapp_number),
+        about_heading = VALUES(about_heading),
+        about_desc = VALUES(about_desc)";
 
     if (mysqli_query($conn, $update_sql)) {
-        $msg = "Contact Information & Settings updated successfully!";
+        $msg = "Contact Information & Homepage Settings updated successfully!";
         $msg_type = "success";
     } else {
         $msg = "Error updating contact info: " . mysqli_error($conn);
@@ -85,7 +99,9 @@ $contact = [
     'email' => 'aquaaircoolling@gmail.com',
     'working_hours' => "Monday - Saturday\n8:00 AM - 8:00 PM",
     'services_text' => 'AC Installation, Repair, Maintenance, Gas Filling & General AC Service.',
-    'whatsapp_number' => '916354911971'
+    'whatsapp_number' => '916354911971',
+    'about_heading' => 'Welcome To AC Installation & Cooling Service Center ⭐',
+    'about_desc' => 'We provide professional AC servicing, cleaning, maintenance, and repairs to keep your cooling system efficient and dependable. Our expert technicians ensure optimal performance, improved air quality, and reduced energy costs, helping you stay comfortable in every season.'
 ];
 
 $contact_query = mysqli_query($conn, "SELECT * FROM contact_info WHERE id = 1");
@@ -222,6 +238,34 @@ require_once __DIR__ . '/includes/sidebar.php';
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Services Short Summary</label>
                             <textarea class="form-control" name="services_text" rows="3" required><?php echo htmlspecialchars($contact['services_text']); ?></textarea>
+                        </div>
+
+                        <!-- Homepage Welcome Section Divider -->
+                        <div class="col-12 mt-4 pt-3 border-top">
+                            <h6 class="fw-bold text-primary mb-3">
+                                <i class="fas fa-home me-2"></i> Homepage Welcome Section (index.php)
+                                <span class="badge ms-2 rounded-pill" style="background:#e0f2fe;color:#0284c7;font-size:11px;">🏠 Live on Homepage</span>
+                            </h6>
+                        </div>
+
+                        <!-- Welcome Section Heading -->
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Welcome Section Heading</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-heading"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="about_heading" 
+                                       value="<?php echo htmlspecialchars($contact['about_heading'] ?? 'Welcome To AC Installation & Cooling Service Center ⭐'); ?>" required>
+                            </div>
+                            <small class="text-muted"><i class="fas fa-info-circle me-1"></i>Homepage (index.php) ma 'Welcome To AC Installation...' vado title aano use kare chhe.</small>
+                        </div>
+
+                        <!-- Welcome Section Description -->
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Welcome Section Description Text</label>
+                            <textarea class="form-control" name="about_desc" rows="4" required><?php echo htmlspecialchars($contact['about_desc'] ?? 'We provide professional AC servicing, cleaning, maintenance, and repairs to keep your cooling system efficient and dependable. Our expert technicians ensure optimal performance, improved air quality, and reduced energy costs, helping you stay comfortable in every season.'); ?></textarea>
+                            <small class="text-muted"><i class="fas fa-info-circle me-1"></i>Homepage (index.php) ma 'We provide professional AC servicing...' vado paragraph aano use kare chhe.</small>
                         </div>
 
                     </div>

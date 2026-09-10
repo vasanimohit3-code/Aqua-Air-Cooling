@@ -134,13 +134,15 @@ CREATE TABLE IF NOT EXISTS `contact_info` (
   `working_hours` text NOT NULL,
   `services_text` text NOT NULL,
   `whatsapp_number` varchar(50) NOT NULL DEFAULT '916354911971',
+  `about_heading` varchar(255) NOT NULL DEFAULT 'Welcome To AC Installation & Cooling Service Center ⭐',
+  `about_desc` text DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Default Contact Info
-INSERT INTO `contact_info` (`id`, `page_heading`, `page_subheading`, `address`, `phone`, `email`, `working_hours`, `services_text`, `whatsapp_number`) VALUES
-(1, 'Contact Us', 'We are available for AC Installation, Repair & Maintenance Services.', '123 Main Street,\nRajkot, Gujarat', '+91 6354911971', 'aquaaircoolling@gmail.com', 'Monday - Saturday\n8:00 AM - 8:00 PM', 'AC Installation, Repair, Maintenance, Gas Filling & General AC Service.', '916354911971')
+INSERT INTO `contact_info` (`id`, `page_heading`, `page_subheading`, `address`, `phone`, `email`, `working_hours`, `services_text`, `whatsapp_number`, `about_heading`, `about_desc`) VALUES
+(1, 'Contact Us', 'We are available for AC Installation, Repair & Maintenance Services.', '123 Main Street,\nRajkot, Gujarat', '+91 6354911971', 'aquaaircoolling@gmail.com', 'Monday - Saturday\n8:00 AM - 8:00 PM', 'AC Installation, Repair, Maintenance, Gas Filling & General AC Service.', '916354911971', 'Welcome To AC Installation & Cooling Service Center ⭐', 'We provide professional AC servicing, cleaning, maintenance, and repairs to keep your cooling system efficient and dependable. Our expert technicians ensure optimal performance, improved air quality, and reduced energy costs, helping you stay comfortable in every season.')
 ON DUPLICATE KEY UPDATE `phone` = VALUES(`phone`);
 
 -- AC Brands / Companies Table
