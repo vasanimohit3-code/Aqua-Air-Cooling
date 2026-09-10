@@ -632,6 +632,80 @@ if (isset($_POST['booking'])) {
     <link href="css/style.css" rel="stylesheet">
     <link href="css/booking.css" rel="stylesheet">
 
+    <style>
+        /* AC Brand / Company & Floating Fields Perfect Responsive Fix */
+        .booking-card .form-floating > .form-control,
+        .booking-card .form-floating > .form-select {
+            height: 62px !important;
+            min-height: 62px !important;
+            border-radius: 14px !important;
+            border: 2px solid #e2e8f0 !important;
+            transition: all 0.25s ease !important;
+        }
+
+        .booking-card .form-floating > .form-select#acCompany,
+        .booking-card .form-floating > select#acCompany,
+        #acCompany {
+            height: 66px !important;
+            min-height: 66px !important;
+            padding-top: 1.6rem !important;
+            padding-bottom: 0.35rem !important;
+            padding-left: 1rem !important;
+            padding-right: 2.4rem !important;
+            font-size: 15.5px !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+            line-height: 1.35 !important;
+            background-color: #ffffff !important;
+            background-position: right 1rem center !important;
+            cursor: pointer !important;
+        }
+
+        .booking-card .form-floating > label[for="acCompany"] {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            padding: 0.5rem 1rem 0 !important;
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            color: #64748b !important;
+            transform: none !important;
+            opacity: 0.9 !important;
+            pointer-events: none !important;
+            line-height: 1.1 !important;
+        }
+
+        .booking-card .form-floating > .form-select#acCompany:focus,
+        #acCompany:focus {
+            border-color: #0284c7 !important;
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15) !important;
+            outline: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .booking-card .form-floating > .form-control,
+            .booking-card .form-floating > .form-select {
+                height: 60px !important;
+                min-height: 60px !important;
+                border-radius: 12px !important;
+            }
+            .booking-card .form-floating > .form-select#acCompany,
+            .booking-card .form-floating > select#acCompany,
+            #acCompany {
+                height: 64px !important;
+                min-height: 64px !important;
+                padding-top: 1.55rem !important;
+                padding-bottom: 0.3rem !important;
+                padding-left: 0.95rem !important;
+                font-size: 15px !important;
+                font-weight: 700 !important;
+            }
+            .booking-card .form-floating > label[for="acCompany"] {
+                padding: 0.45rem 0.95rem 0 !important;
+                font-size: 11.5px !important;
+            }
+        }
+    </style>
 </head>
 <body>
 <?php include 'includes/navbar.php'; ?>
