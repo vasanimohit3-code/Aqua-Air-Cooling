@@ -480,13 +480,13 @@ LIMIT 6");
             </a>
 
             <div class="d-flex align-items-center gap-1 gap-sm-2">
-                <a href="index.php" class="nav-btn btn-nav-light d-none d-md-inline-flex">
-                    <i class="fas fa-house"></i> Home
+                <a href="index.php" class="nav-btn btn-nav-light" title="Home Page">
+                    <i class="fas fa-house"></i> <span>Home</span>
                 </a>
-                <a href="my_bookings.php" class="nav-btn btn-nav-light">
+                <a href="my_bookings.php" class="nav-btn btn-nav-light" title="My Bookings">
                     <i class="fas fa-list-check"></i> <span class="d-none d-sm-inline">My Bookings</span><span class="d-inline d-sm-none">Bookings</span>
                 </a>
-                <a href="booking.php" class="nav-btn btn-nav-book">
+                <a href="booking.php" class="nav-btn btn-nav-book" title="Book New Service">
                     <i class="fas fa-plus"></i> <span class="d-none d-sm-inline">Book Service</span><span class="d-inline d-sm-none">Book</span>
                 </a>
                 <a href="logout.php" class="nav-btn btn-outline-danger text-white ms-1" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4);" title="Sign Out">

@@ -363,6 +363,9 @@ $total_bookings = mysqli_num_rows($result);
             </a>
 
             <div class="d-flex align-items-center gap-1 gap-sm-2">
+                <a href="index.php" class="nav-btn btn-nav-light" title="Home Page">
+                    <i class="fas fa-house"></i> <span>Home</span>
+                </a>
                 <a href="user_dashboard.php" class="nav-btn btn-nav-light" title="Dashboard">
                     <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Dashboard</span>
                 </a>
